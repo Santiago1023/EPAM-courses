@@ -1,0 +1,34 @@
+# some tasks using key=value shorthand:
+- name: Install Telegraf
+  yum:
+    name: telegraf-{{ telegraf_version }} state=present update_cache=yes disable_gpg_check=yes enablerepo=telegraf
+  notify: restart telegraf
+
+- name: Configure Telegraf
+  template: src=telegraf.conf.j2 dest=/etc/telegraf/telegraf.conf
+  notify: restart telegraf
+
+- name: start Telegraf
+  service: name=telegraf state=started enabled=yes 
+
+# the same tasks using native YAML syntax
+- name: Install Telegraf
+  yum:
+    name: "telegraf-{{ telegraf_version }}"
+    state: present
+    update_cache: yes
+    disable_gpg_check: yes
+    enablerepo: telegraf
+  notify: restart telegraf
+
+- name: Configure Telegraf
+  template:
+    src: telegraf.conf.j2
+    dest: /etc/telegraf/telegraf.conf
+  notify: restart telegraf
+
+- name: Start Telegraf
+  service:
+    name: telegraf
+    state: started
+    enabled: yes 

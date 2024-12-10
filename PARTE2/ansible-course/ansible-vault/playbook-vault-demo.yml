@@ -1,0 +1,20 @@
+# ansible-vault encrypt_string "secret123" --name vault_test_password
+- name: VAULT DEMO
+  hosts: localhost
+  gather_facts: no
+  vars:
+    vault_test_password: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          36373334643762663730313439303938326636306630303239383235643433323362633530356430
+          6238333061356232303234346430303539326335636331310a373836383066633665393538363135
+          61613637663264333632333030303434393238613437643264633633626133393739656165376537
+          3737376139666462340a313836316235366263633732626334393762646230316137386335646263
+          6264
+
+  tasks:
+    - name: Print Test Password
+      debug:
+        msg:
+          - "vault_test_password: {{ vault_test_password }}"   
+
+# ansible-playbook playbook-vault-demo.yml --ask-vault-password

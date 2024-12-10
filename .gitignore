@@ -1,0 +1,8 @@
+PARTE2/ansibletesting/
+# Ignorar archivos .exe
+*.exe
+
+# Ignorar archivos generados automáticamente
+.terraform/
+.DS_Store
+

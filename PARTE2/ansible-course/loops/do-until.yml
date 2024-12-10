@@ -1,0 +1,8 @@
+- name: Install Flannel
+  command: kubectl apply -f {{ flannel_config }}
+
+- shell: kubectl get nodes | grep {{ ansible_hostname }}
+  until: "'NotReady' not in result.stdout"
+  register: result
+  retries: 10
+  delay: 10

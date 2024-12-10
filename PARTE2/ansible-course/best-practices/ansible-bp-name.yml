@@ -1,0 +1,36 @@
+# without explanation
+- name: Ansible Example
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - command: "ls -l ~"
+
+    - debug:
+        msg: "This is a test message."
+
+    - copy:
+        dest: "/tmp/ansible-test.txt"
+        content: |
+          This is line 1
+          This is line 2
+
+# with explanation
+- name: Ansible Example
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: "List Home Folder"
+      command: "ls -l ~"
+
+    - name: "Print Debug Message"
+      debug:
+        msg: "This is a test message."
+
+    - name: "Create Test File with Content"
+      copy:
+        dest: "/tmp/ansible-test.txt"
+        content: |
+          This is line 1
+          This is line 2

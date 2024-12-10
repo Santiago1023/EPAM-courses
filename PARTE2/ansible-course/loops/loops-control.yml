@@ -1,0 +1,37 @@
+- hosts: localhost
+  tasks:
+    - name: create servers
+      debug: msg={{ item.name }}
+      with_items:
+        - name: server1
+          disks: 30gb
+          ram: 16Gb
+          network:
+            nic01: 192.168.0.10
+            nic02: 10.10.1.10
+        - name: server2
+          disks: 30gb
+          ram: 16Gb
+          network:
+            nic01: 192.168.0.11
+            nic02: 10.10.1.11
+
+      # loop_control:
+      # label: "{{ item.name }}"
+#	
+# Result:
+
+# TASK [create servers] ******************************************************************************ok: [localhost] => (item={u'disks': u'30gb', u'ram': u'16Gb', u'name': u'server1', u'network': {u'nic02': u'10.10.1.10', u'nic01': u'192.168.0.10'}}) => {
+#     "msg": "server1"
+# }
+# ok: [localhost] => (item={u'disks': u'30gb', u'ram': u'16Gb', u'name': u'server2', u'network': {u'nic02': u'10.10.1.11', u'nic01': u'192.168.0.11'}}) => {
+#     "msg": "server2"
+# }
+
+# When "loop_control" uncommented:
+
+# TASK [create servers] ******************************************************************************ok: [localhost] => (item=server1) => {
+#     "msg": "server1"
+# }
+# ok: [localhost] => (item=server2) => { 
+#     "msg": "server2"	}

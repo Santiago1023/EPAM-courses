@@ -1,0 +1,29 @@
+- hosts: localhost
+  tasks:
+    - debug: var=item
+      with_items:
+        - "one"
+        - "two"
+      register: looprg
+
+    - debug: var=looprg
+
+# …
+# TASK [debug] ***************************************************************************************ok: [localhost] => {
+#     "looprg": {
+#         "changed": false,
+#         "msg": "All items completed",
+#         "results": [
+#             {
+#                 "ansible_loop_var": "item",
+#                 "changed": false,
+#                 "failed": false,
+#                 "item": "one"
+#             },
+#             {
+#                 "ansible_loop_var": "item",
+#                 "changed": false,
+#                 "failed": false,
+#                 "item": "two"
+#             }
+# …                    

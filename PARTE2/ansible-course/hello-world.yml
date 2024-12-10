@@ -1,0 +1,12 @@
+- name: Hello World play  # the name of our playbook
+  hosts: localhost  # where our playbook will be executed
+  tasks:
+  - name: Debug # task1
+    debug: 
+      msg: Hello world!
+  - name: Command # task2
+    command: echo 'hello worlddd!'
+
+# ansible-playbook hello-world.yml 
+# ansible-playbook hello-world.yml -v
+

@@ -1,0 +1,40 @@
+# Large and 'not so good' implementation
+- name: Ansible Blocks
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: List usr directory content
+      command: "ls -l /usr"
+      become: yes
+
+    - name: List opt partition content
+      command: "ls -l /opt"
+      become: yes
+
+    - name: List ansible user's home directory content
+      command: "ls -l ~"
+
+    - name: List bin diretcory content
+      command:  "ls -l /bin"
+      become: yes
+
+# Short and 'good' implementation
+- name: Ansible Blocks
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - block:
+      - name: List usr directory content
+        command: "ls -l /usr"
+
+      - name: List opt partition content
+        command: "ls -l /opt"
+
+      - name: List bin directory content
+        command: "ls -l /bin"
+      become: yes
+
+    - name: List ansible user's home directory content
+      command: "ls -l ~"

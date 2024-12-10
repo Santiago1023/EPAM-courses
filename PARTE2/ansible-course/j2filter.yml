@@ -1,0 +1,8 @@
+- hosts: localhost
+  tasks:
+  - name: touch files with an optional mode
+    file: dest={{ item.path }} state=touch mode={{ item.mode | default("755")}}
+    with_items:
+    - { path: /tmp/foo }
+    - { path: /tmp/bar }
+    - { path: /tmp/baz, mode: "0444" }

@@ -1,0 +1,21 @@
+- hosts: localhost
+  vars:
+    # string variables
+    str_var1: string1
+    str_var2: "string2"
+    str_var3: 'string3'
+
+    # numeric variables
+    num_var1: 2018
+    num_var2: 20.17
+
+    #boolean
+    bool_var1: True
+    bool_var2: false
+    bool_var3: yes
+    bool_var4: no
+
+  tasks:
+  - shell: echo {{ str_var1 }}
+  - shell: echo {{ num_var1 }}
+  - shell: echo {{ bool_var1 }}

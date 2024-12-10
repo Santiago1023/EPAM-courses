@@ -1,0 +1,23 @@
+
+# In the following example, you will perform a task with alice and wheel,
+# alice and root, bob and wheel, and bob and root. You can refer to these
+# elements by item "0" element and item "1" element to achieve wheel-root.
+
+- name: Nested Loops Example
+  hosts: localhost
+  tasks:
+    - name: print several users with multiple groups
+      debug: msg="User {{ item[0] }} will be added to group {{ item[1] }}"
+      with_nested:
+        - [ 'alice', 'bob' ]
+        - [ 'wheel', 'root' ]
+
+- name: Give users access to multiple databases
+  mysql_user:
+    name: "{{ item[0] }}"
+    priv: "{{ item[1] }}.*:ALL"
+    append_privs: yes
+    password: "foo"
+  with_nested:
+    - [ 'alice', 'bob']
+    - [ 'clientdb', 'employeedb', 'providerdb' ]   

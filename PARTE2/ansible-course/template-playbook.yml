@@ -1,0 +1,5 @@
+- hosts: localhost
+  tasks:
+    - template:
+      src: template.j2
+      dest: result.conf

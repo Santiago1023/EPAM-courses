@@ -1,0 +1,27 @@
+- hosts: localhost
+    
+  vars:
+    mylist:
+      - 1
+      - 3 == 3
+      - True
+    myotherlist:
+      - False
+      - True
+
+  tasks:
+    - debug: msg="all are true!"
+      when: mylist it all
+    
+    - debug: msg="at least one is true"
+      when: myotherlist|any
+        
+#     ...
+
+# ok: [localhost] => {
+#       "msg": "all are true!"
+#     }
+#     ...
+# ok: [localhost] => {
+#       "msg": "at least one is true"
+#     }

@@ -1,0 +1,16 @@
+- tasks:
+- name: add several users
+  user:
+    name: '{{ item }}'
+    state: present
+    groups: wheel
+  with_items:
+    - testuser1
+    - testuser2
+
+- name: install some packages
+  yum: name={{ item }} state=installed
+  with_items:
+    - httpd
+    - java-1.7.0-openjdk-devel
+    - java-1.7.0-openjdk
