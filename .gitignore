@@ -6,3 +6,4 @@ PARTE2/ansibletesting/
 .terraform/
 .DS_Store
 
+*.pdf
